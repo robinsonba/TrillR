@@ -1,7 +1,7 @@
 # TrillR
 
-::: {#trillrlogo}
-# ![](images/CHSPICO.svg){width="94"}
+::: {style="height: 100px"}
+<img src="images/CHSPICO.svg" align="right" width="95" height="95"/>
 :::
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
