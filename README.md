@@ -1,10 +1,30 @@
-# TrillR <img src="images/CHSPICO.svg" align="right" width="95" height="95"/>
+# TrillR 
+<img src="images/CHSPICO.svg" align="right" width="95" height="95"/>
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+<!-- badges: start -->
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+![CRAN
+status](https://www.r-pkg.org/badges/version/TrillR)
+![License](https://img.shields.io/github/license/deanrobertevans/TrillR)
+![Issues](https://img.shields.io/github/issues/deanrobertevans/TrillR)
 
-```{r cars}
+<!-- badges: end -->
+## Overview
+The ``TrillR`` package was originally developed as a few functions to assist in the random selection of wildlife accoustic recordings for species identification. This package has grown and is now part of a workflow for the selection of these recordings with the exclusion of bad weather days.
+
+This package is largly dependent on using SoX - Sound eXchange which can be downloaded here: <https://sourceforge.net/projects/sox/files/sox/>. 
+
+## Installation
+The development version of the TrillR package can be downloaded in R.
+```
+# install.packages("devtools")
+devtools::install_github("deanrobertevans/TrillR")
+```
+## Usage
+
+```
 summary(cars)
 ```
 
