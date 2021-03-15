@@ -18,7 +18,7 @@ This package is largly dependent on using SoX - Sound eXchange which can be down
 
 ## Installation
 The development version of the TrillR package can be downloaded in R.
-```
+```r
 # install.packages("devtools")
 devtools::install_github("deanrobertevans/TrillR")
 ```
