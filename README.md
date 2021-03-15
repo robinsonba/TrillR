@@ -47,8 +47,15 @@ This function is dependent on a standardized file structure where each location 
 As long as the required structure above is met then you can read in the data. By default wavs will be searched for in the working directory but a different directory can be specified. Start dates and end dates can also be specified to remove any recordings that may not be of interest. Lastly, you can specify if you want to get the file duration of each file when reading in your wav data. This is optional because it can be quite time consuming but it can also be useful to remove any recordings that may not be long enough for selection.
 
 ```r
-data <- get.wavs(directory=getwd(), start.date = "2017-06-01",end.date = "2017-06-30",getDuration=T)
+data <- get.wavs(directory=getwd(), start.date = "2017-06-01", end.date = "2017-06-30", getDuration=T)
 ```
-
+Your data will look something like this:
+| file.path                                                                      | basename                    | location    | datetime        | JDay | file.duration |
+|--------------------------------------------------------------------------------|-----------------------------|-------------|-----------------|------|---------------|
+| C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_033500.wav | LV-01-01-01_20170609_033500 | LV-01-01-01 | 2017-06-09 3:35 | 160  | 600           |
+| C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_035100.wav | LV-01-01-01_20170609_035100 | LV-01-01-01 | 2017-06-09 3:51 | 160  | 600           |
+| C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_045100.wav | LV-01-01-01_20170609_045100 | LV-01-01-01 | 2017-06-09 4:51 | 160  | 3600          |
+| C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_055106.wav | LV-01-01-01_20170609_055106 | LV-01-01-01 | 2017-06-09 5:51 | 160  | 594           |
+| C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_065100.wav | LV-01-01-01_20170609_065100 | LV-01-01-01 | 2017-06-09 6:51 | 160  | 600           |
 
 
