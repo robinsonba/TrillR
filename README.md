@@ -24,16 +24,15 @@ devtools::install_github("deanrobertevans/TrillR")
 ```
 ## Usage
 
+```r
+library(TrillR)
 ```
-summary(cars)
+### Set Location of sox.exe
+Many of the functions in this package rely on Sox and therefore the location of the sox.exe file must be defined in R before doing any recording selection. 
+
+To set the location use the  ``setsox.exe()`` function. You can specify a file path within the function or if it is left blank a file dialog will appear where you can choose the location.
+```r
+setsox.exe()
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
