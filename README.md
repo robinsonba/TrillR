@@ -38,7 +38,17 @@ setsox.exe("Path/sox.exe")
 ### Getting .wav Data
 It is recommended that you set your working directory to the location of all of your recordings. Then to read in the .wav data use the ``get.wavs()`` function.
 
-This function is dependent on a standardized file structure where each location has its own folder of recordings. For example the sampling location LV-01-01-01 would have a folder named after this location conaining all recordings. Furthermore, the recording files must also be named using a standardized format that contains the location, date, and time seperated by underscore: **location_date_time.wav**. Using the above location as another example a recording file name would look like this: LV-01-01-01_20170609_033500.wav.
+This function is dependent on a standardized file structure where each location has its own folder of recordings. For example the sampling location LV-01-01-01 would have a folder named after this location conaining all recordings. Furthermore, the recording files must also be named using a standardized format that contains the location, date, and time seperated by underscore:
+> **location_date_time.wav**
+
+ Using the above location as another example a recording file name would look like this: 
+ >**LV-01-01-01_20170609_033500.wav**
+
+As long as the required structure above is met then you can read in the data. By default wavs will be searched for in the working directory but a different directory can be specified. Start dates and end dates can also be specified to remove any recordings that may not be of interest. Lastly, you can specify if you want to get the file duration of each file when reading in your wav data. This is optional because it can be quite time consuming but it can also be useful to remove any recordings that may not be long enough for selection.
+
+```r
+data <- get.wavs(directory=getwd(), start.date = "2017-06-01",end.date = "2017-06-30",getDuration=T)
+```
 
 
 
