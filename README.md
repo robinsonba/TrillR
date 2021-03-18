@@ -66,3 +66,11 @@ locationdata <- read_excel("LV.xlsx")
 data <- mergelocations(data, locationdata, locationname = "Location", Latitude="Latitude", Longitude="Longitude")
 ```
 ### Calculating Sun Times
+Using specific sun times can be really important for determining species presence in acoustic recordings. Building off of the `getSunlightTimes()` function from the `suncalc` R package, the `TrillR` function `getSunCalcs()` adds the ability to calculate any of times of importance and append a column for those times to your recording dataset. Available sun time calculations are: solarNoon, sunrise, sunset, sunriseEnd, sunsetStart, nightEnd, and goldenHourEnd. See the `suncalc` package for more details. Latitude and Longitude must be existings columns in order to use `getSunCalcs()`.
+
+In addition, support for parallel processing for `getSunCalcs()` has been added for increased speed when dealing with many recordings. 
+
+```r
+data <- getSunCalcs(data, calc = c("sunrise","sunset"), doParallel=T)
+```
+
