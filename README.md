@@ -13,7 +13,9 @@ status](https://www.r-pkg.org/badges/version/TrillR)
 ## Overview
 The ``TrillR`` package was originally developed as a few functions to assist in the random selection of wildlife accoustic recordings for species identification. This package has grown and is now part of a workflow for the selection of these recordings with the exclusion of bad weather days.
 
-This package is largly dependent on using SoX - Sound eXchange which can be downloaded here: <https://sourceforge.net/projects/sox/files/sox/>. 
+This package is largely dependent on using SoX - Sound eXchange which can be downloaded here: <https://sourceforge.net/projects/sox/files/sox/>. 
+
+For additional improved functionality you can also use the accompanied TrillR App to increase the speed of selecting recordings. The latest release can be found here: <https://github.com/deanrobertevans/TrillRApp/releases>.
 
 ## Installation
 The development version of the TrillR package can be downloaded in R.
@@ -55,4 +57,12 @@ Your data should look something like this:
 | C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_035100.wav | LV-01-01-01_20170609_035100 | LV-01-01-01 | 2017-06-09 3:51 | 160  | 600           |
 
 ### Merging Location Data
-Coordinates for each location can be used to calculate things such as sunrise and sunset. In order to non destructively merge coordinates to your recording data use the `mergelocations()` function.  
+Coordinates for each location can be used to calculate things such as sunrise and sunset. In order to non destructively merge coordinates to your recording data use the `mergelocations()` function. This function provides checks and warns you of any missing locations before merging your data.
+
+```r
+library(readxl)
+locationdata <- read_excel("LV.xlsx")
+
+data <- mergelocations(data, locationdata, locationname = "Location", Latitude="Latitude", Longitude="Longitude")
+```
+### Calculating Sun Times
