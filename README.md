@@ -1,4 +1,4 @@
-# TrillR <img src="images/CHSPICO.svg" align="right" width="95" height="95"/>
+# TrillR <img src="images/CHSPICO.svg" align="right" width="110" height="110"/>
 
 <!-- badges: start -->
 
