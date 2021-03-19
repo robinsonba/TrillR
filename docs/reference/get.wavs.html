@@ -167,8 +167,8 @@
     <p>A data.frame with recording file metadata: file.path, basename, location, datetime, JDay, and sometimes file.duration.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>get.wavs</span><span class='op'>(</span>start.date <span class='op'>=</span> <span class='st'>"2017-06-01"</span>, end.date <span class='op'>=</span> <span class='st'>"2017-06-30"</span>, getDuration<span class='op'>=</span><span class='cn'>T</span>, minduration<span class='op'>=</span><span class='fl'>180</span><span class='op'>)</span> <span class='co'>#gets recordings of at least 3 min long for the month of June 2o17.</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in get.wavs(start.date = "2017-06-01", end.date = "2017-06-30",     getDuration = T, minduration = 180): You are getting ahead of yourself! You need to specify the location of Sox.exe first</span></div></pre>
+    <pre class="examples"><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'>get.wavs</span><span class='op'>(</span>start.date <span class='op'>=</span> <span class='st'>"2017-06-01"</span>, end.date <span class='op'>=</span> <span class='st'>"2017-06-30"</span>, getDuration<span class='op'>=</span><span class='cn'>T</span>, minduration<span class='op'>=</span><span class='fl'>180</span><span class='op'>)</span> <span class='co'>#gets recordings of at least 3 min long for the month of June 2o17.</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
