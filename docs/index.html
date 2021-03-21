@@ -84,6 +84,14 @@
 <p>The <code>TrillR</code> package was originally developed as a few functions to assist in the random selection of wildlife accoustic recordings for species identification. This package has grown and is now part of a workflow for the selection of these recordings with the exclusion of bad weather days.</p>
 <p>This package is largely dependent on using SoX - Sound eXchange which can be downloaded here: <a href="https://sourceforge.net/projects/sox/files/sox/" class="uri">https://sourceforge.net/projects/sox/files/sox/</a>.</p>
 <p>For additional improved functionality you can also use the accompanied TrillR App to increase the speed of selecting recordings. The latest release can be found here: <a href="https://github.com/deanrobertevans/TrillRApp/releases" class="uri">https://github.com/deanrobertevans/TrillRApp/releases</a>.</p>
+<div id="resources" class="section level3">
+<h3 class="hasAnchor">
+<a href="#resources" class="anchor"></a>Resources</h3>
+<ul>
+<li><a href="https://deanrobertevans.github.io/TrillR/">Documentation</a></li>
+<li><a href="https://deanrobertevans.github.io/TrillR/articles/Workflow.html">Example Workflow</a></li>
+</ul>
+</div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -212,7 +220,20 @@
 <div id="clipping-wavs" class="section level3">
 <h3 class="hasAnchor">
 <a href="#clipping-wavs" class="anchor"></a>Clipping .wavs</h3>
-<p>Recordings are often a lot longer than what is needed for transcription. The <code><a href="reference/sox.clip.html">sox.clip()</a></code> and <code><a href="reference/sox.clips.html">sox.clips()</a></code> functions</p>
+<p>Recordings are often a lot longer than what is needed for transcription. The <code><a href="reference/sox.clip.html">sox.clip()</a></code> and <code><a href="reference/sox.clips.html">sox.clips()</a></code> functions clip wav files to desired length and save them in a new directory. The <code><a href="reference/sox.clip.html">sox.clip()</a></code> function is for clipping a single .wav file using a file.path whereas the <code><a href="reference/sox.clips.html">sox.clips()</a></code> function clips multiple .wavs to the same length with a recording selection data.frame for input.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/sox.clips.html">sox.clips</a></span><span class="op">(</span><span class="va">finalselection</span>, out.path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"Spectrograms"</span><span class="op">)</span>, duration <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fl">0</span>, end <span class="op">=</span> <span class="fl">180</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="additional-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#additional-functions" class="anchor"></a>Additional Functions</h3>
+<p>There are two additional functions that can be helpful for recording selection:</p>
+<ul>
+<li>
+<code><a href="reference/remove.files.html">remove.files()</a></code> Removes matching files from one data.frame based on input dataframe. Useful to remove already processed recordings or recordings selected already during random file selection.</li>
+<li>
+<code><a href="reference/remove.selection.html">remove.selection()</a></code> Removes all files that correspond to already selected files so that you can continue with file selction.</li>
+</ul>
 </div>
 </div>
 </div>

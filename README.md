@@ -17,6 +17,10 @@ This package is largely dependent on using SoX - Sound eXchange which can be dow
 
 For additional improved functionality you can also use the accompanied TrillR App to increase the speed of selecting recordings. The latest release can be found here: <https://github.com/deanrobertevans/TrillRApp/releases>.
 
+### Resources 
+* [Documentation](https://deanrobertevans.github.io/TrillR/)
+* [Example Workflow](https://deanrobertevans.github.io/TrillR/articles/Workflow.html)
+
 ## Installation
 The development version of the TrillR package can be downloaded in R.
 ```r
