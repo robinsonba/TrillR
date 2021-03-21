@@ -14,11 +14,26 @@ knitr::opts_chunk$set(
 )
 ```
 
+The following vignette has been developed to outline the recording selection process. This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This workflow can be modified for your own purposes. 
 
-```{r setup, warning=FALSE, message=FALSE}
+### Load Required Packages
+```{r setup, warning=FALSE, message=FALSE, results = FALSE}
+# Install TrillR if needed
+#devtools::install_github("deanrobertevans/TrillR")
 library(TrillR)
 library(readxl)
 library(suncalc)
 library(tidyverse)
 library(hms)
 ```
+
+### Set Working Directory
+Your working directory will be the location of all of the recordings you want to select from. It is important that recordings are organized in folders within this working directory. Each folder named after the location of the recordings it contains.
+
+
+```{r}
+setwd("G:\\Deployed_ARU_Recordings")
+
+```
+
+

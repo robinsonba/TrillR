@@ -82,12 +82,26 @@
 
     
     
+<p>The following vignette has been developed to outline the recording selection process. This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This workflow can be modified for your own purposes.</p>
+<div id="load-required-packages" class="section level3">
+<h3 class="hasAnchor">
+<a href="#load-required-packages" class="anchor"></a>Load Required Packages</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TrillR</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># Install TrillR if needed</span>
+<span class="co">#devtools::install_github("deanrobertevans/TrillR")</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TrillR</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/datastorm-open/suncalc">suncalc</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hms.tidyverse.org/">hms</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="set-working-directory" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-working-directory" class="anchor"></a>Set Working Directory</h3>
+<p>Your working directory will be the location of all of the recordings you want to select from. It is important that recordings are organized in folders within this working directory. Each folder named after the location of the recordings it contains.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"G:\\Deployed_ARU_Recordings"</span><span class="op">)</span></code></pre></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

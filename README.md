@@ -75,3 +75,5 @@ Available sun time calculations are: solarNoon, sunrise, sunset, sunriseEnd, sun
 data <- getSunCalcs(data, calc = c("sunrise","sunset"), doParallel=T)
 ```
 
+### Assigning Categories
+Assigning recordings into specific categories based on their times is an important step in recording selection. 
