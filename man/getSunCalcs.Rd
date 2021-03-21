@@ -6,9 +6,8 @@
 \usage{
 getSunCalcs(
   data,
-  calc = c("solarNoon", "nadir", "sunrise", "sunset", "sunriseEnd", "sunsetStart",
-    "dawn", "dusk", "nauticalDawn", "nauticalDusk", "nightEnd", "night", "goldenHourEnd",
-    "goldenHour"),
+  calc = c("solarNoon", "sunrise", "sunset", "sunriseEnd", "sunsetStart", "nightEnd",
+    "goldenHourEnd"),
   doParallel = FALSE
 )
 }

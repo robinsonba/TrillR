@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • TrillR</title>
+<title>Clip muliple wavs to desired length — sox.clips • TrillR</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Clip muliple wavs to desired length — sox.clips" />
+<meta property="og:description" content="This function uses SoX to clip multiple wav files to a desired length." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -112,108 +113,48 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Clip muliple wavs to desired length</h1>
+    
+    <div class="hidden name"><code>sox.clips.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This function uses SoX to clip multiple wav files to a desired length.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>sox.clips</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  out.path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"Clipped_Selection"</span><span class='op'>)</span>,
+  duration <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>start <span class='op'>=</span> <span class='fl'>0</span>, end <span class='op'>=</span> <span class='fl'>180</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="categorize.html">categorize()</a></code> </p>
-        </td>
-        <td><p>Categorize recording data based on dates/times</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get.wavs.html">get.wavs()</a></code> </p>
-        </td>
-        <td><p>Get .wav Recording Metadata</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getSunCalcs.html">getSunCalcs()</a></code> </p>
-        </td>
-        <td><p>Get sunlight times for recording selection</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mergelocations.html">mergelocations()</a></code> </p>
-        </td>
-        <td><p>Merge location and recording data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="remove.files.html">remove.files()</a></code> </p>
-        </td>
-        <td><p>Remove Recording Files</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="remove.selection.html">remove.selection()</a></code> </p>
-        </td>
-        <td><p>Remove Selected Categories Per Location</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="saveselection.file.html">saveselection.file()</a></code> </p>
-        </td>
-        <td><p>Save recording selection data file to csv</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="setsox.exe.html">setsox.exe()</a></code> </p>
-        </td>
-        <td><p>Set location of sox.exe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sox.clip.html">sox.clip()</a></code> </p>
-        </td>
-        <td><p>Clip wav to desired length</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sox.clips.html">sox.clips()</a></code> </p>
-        </td>
-        <td><p>Clip muliple wavs to desired length</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sox.spectrogram.html">sox.spectrogram()</a></code> </p>
-        </td>
-        <td><p>Generate a spectrogram using SoX</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sox.spectrograms.html">sox.spectrograms()</a></code> </p>
-        </td>
-        <td><p>Generate multiple spectrograms using SoX</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>String path to .wav file.</p></td>
+    </tr>
+    <tr>
+      <th>out.path</th>
+      <td><p>String path to where to save your file. Defaults to a folder "Clipped_Selection".</p></td>
+    </tr>
+    <tr>
+      <th>duration</th>
+      <td><p>A list for the start and end time of the clip in seconds. Default is start = 0 and end = 180 for a 3 min clip.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Clipped .wav files.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='fu'>sox.clips</span><span class='op'>(</span><span class='va'>data</span>,out.path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='st'>"Spectrograms"</span><span class='op'>)</span>, duration <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>start <span class='op'>=</span> <span class='fl'>0</span>, end <span class='op'>=</span> <span class='fl'>180</span><span class='op'>)</span><span class='op'>)</span>
+</pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

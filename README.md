@@ -96,7 +96,7 @@ Passable options include a list for duration with start and end times in seconds
 ```r
 sox.spectrogram(file.path="C:/Users/deane/Desktop/TrillR/Test/LV-01-01-01/LV-01-01-01_20170609_033500.wav", out.path = file.path(getwd(),"Spectrograms"), size = list(x = 2000, y = 1000), duration = list(start = 0, end = 180))
 ```
-#### Example of a default spectrogram:
+##### Example of a default spectrogram:
 <img src="images/LV-01-01-01_20170608_075100.png" />
 
 Alternatively, you can generate many spectrograms using the the `sox.spectrograms()` function. This function differs from the above function in that it uses a recording selection data.frame to generate multiple spectrograms. So for example if you take a random sample of recordings for each location and category you have specified you can pass this data.frame to `sox.spectrograms()` and it will create all your spectrograms for you along with saving a recording selection file with those spectrograms. This file can be then passed to the TrillR application for selecting recordings. 
@@ -107,5 +107,11 @@ Alternatively, you can generate many spectrograms using the the `sox.spectrogram
 ```r
 sample <- dataselection %>% group_by(location,category) %>% slice_sample(n=1)
 
-sox.spectrograms(sample, doParallel = T)
+sox.spectrograms(sample, doParallel = TRUE)
+```
+### Clipping .wavs
+Recordings are often a lot longer than what is needed for transcription. The `sox.clip()` and `sox.clips()` functions clip wav files to desired length and save them in a new directory. The `sox.clip()` function is for clipping a single .wav file using a file.path whereas the `sox.clips()` function clips multiple .wavs to the same length with a recording selection data.frame for input. 
+
+```r
+sox.sox.clips(finalselection, out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
 ```
