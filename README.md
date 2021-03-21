@@ -116,3 +116,6 @@ Recordings are often a lot longer than what is needed for transcription. The `so
 sox.clips(finalselection, out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
 ```
 ### Additional Functions
+There are two additional functions that can be helpful for recording selection:
+* `remove.files()` Removes matching files from one data.frame based on input dataframe. Useful to remove already processed recordings or recordings selected already during random file selection.
+* `remove.selection()` Removes all files that correspond to already selected files so that you can continue with file selction.
