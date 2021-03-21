@@ -113,5 +113,6 @@ sox.spectrograms(sample, doParallel = TRUE)
 Recordings are often a lot longer than what is needed for transcription. The `sox.clip()` and `sox.clips()` functions clip wav files to desired length and save them in a new directory. The `sox.clip()` function is for clipping a single .wav file using a file.path whereas the `sox.clips()` function clips multiple .wavs to the same length with a recording selection data.frame for input. 
 
 ```r
-sox.sox.clips(finalselection, out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
+sox.clips(finalselection, out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
 ```
+### Additional Functions
