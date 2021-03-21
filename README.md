@@ -76,4 +76,17 @@ data <- getSunCalcs(data, calc = c("sunrise","sunset"), doParallel=T)
 ```
 
 ### Assigning Categories
-Assigning recordings into specific categories based on their times is an important step in recording selection. 
+Assigning recordings into specific categories based on their times is an important step in recording selection. This is where the `categorize()` function comes in to assign a category based on inclusive start and end dates/times. This function works on its own or with dplyr for added functionality.
+
+Start and end dates can be in four formats: integer yday, character ("YYYY-MM-DD"), date format, or POSIXct.
+
+Start and end times can be in three formats: character ("HH:MM:SS"), hms format, or POSIXct.
+
+```r
+data <- categorize(data,"EN","2017-06-01","2017-06-15","22:00:00","01:00:00")
+#or use dplyr and calculate fields
+data <- data %>%  dplyr::group_by(location) %>% dplyr::mutate(start.date=min(JDay),end.date=ceiling(mean(c(max(JDay),min(JDay)))),start.time=as_hms(sunset-3600),end.time=as_hms(sunset+3600)) %>%
+categorize("EN",start.date,end.date,start.time,end.time)
+```
+
+### Creating Spectrograms
