@@ -87,4 +87,13 @@ data <- getSunCalcs(data, calc = c("sunrise","sunset"),doParallel=T)
 
 ### Categorize Recordings
 
-Next is to put recordings into time categories for selection. The idea is that for each location there will be one randomly selected recording for each category.
+Next is to put recordings into time categories for selection. The idea is that for each location there will be one randomly selected recording for each category. For our purposes lets create 8 time categories. We will divide the the recordings up into two equal halves of the month of June depending on the number of days of recordings for each location. The first half will be early ('E') and the second half will be late (L). Then for each early and late June recordings we will select four time periods: an hour before sunrise to an hour after sunrise, an hour after sunrise to three hours after sunrise, three hours after sunrise to five hours after sunrise, and an hour before sunset to an hour after sunset. This results in 8 categories to define:
+* EE First half of recordings and an hour before sunrise to an hour after sunrise.
+* LE Second half of recordings and an hour before sunrise to an hour after sunrise.
+* EM First half of recordings and an hour after sunrise to three hours after sunrise.
+* LM Second half of recordings and an hour after sunrise to three hours after sunrise.
+* EL First half of recordings and three hours after sunrise to five hours after sunrise.
+* LL Second half of recordings and three hours after sunrise to five hours after sunrise.
+* EN First half of recordings and an hour before sunset to an hour after sunset.
+* LN Second half of recordings and an hour before sunset to an hour after sunset.
+
