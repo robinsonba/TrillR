@@ -83,24 +83,71 @@
     
     
 <p>The following vignette has been developed to outline the recording selection process. This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This workflow can be modified for your own purposes.</p>
+<div id="clear-workspace" class="section level3">
+<h3 class="hasAnchor">
+<a href="#clear-workspace" class="anchor"></a>Clear Workspace</h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+</div>
 <div id="load-required-packages" class="section level3">
 <h3 class="hasAnchor">
 <a href="#load-required-packages" class="anchor"></a>Load Required Packages</h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install TrillR if needed</span>
 <span class="co">#devtools::install_github("deanrobertevans/TrillR")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TrillR</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/datastorm-open/suncalc">suncalc</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hms.tidyverse.org/">hms</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hms.tidyverse.org/">hms</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="set-working-directory" class="section level3">
 <h3 class="hasAnchor">
 <a href="#set-working-directory" class="anchor"></a>Set Working Directory</h3>
 <p>Your working directory will be the location of all of the recordings you want to select from. It is important that recordings are organized in folders within this working directory. Each folder named after the location of the recordings it contains.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">setwd</a></span><span class="op">(</span><span class="st">"G:\\Deployed_ARU_Recordings"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="set-the-location-of-sox-exe" class="section level3">
+<h3 class="hasAnchor">
+<a href="#set-the-location-of-sox-exe" class="anchor"></a>Set the Location of sox.exe</h3>
+<p>The TrillR package uses SoX to deal with .wav file manipulation and generating spectrograms. To use many of the functions in this package your first need to direct the package to the location of the sox.exe. The latest release can be downloaded here <a href="https://sourceforge.net/projects/sox/files/sox/" class="uri">https://sourceforge.net/projects/sox/files/sox/</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/setsox.exe.html">setsox.exe</a></span><span class="op">(</span><span class="st">"C:/Users/deane/Desktop/sox-14.4.2/sox.exe"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="get--wav-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#get--wav-data" class="anchor"></a>Get .wav Data</h3>
+<p>Use the the <code><a href="../reference/get.wavs.html">get.wavs()</a></code> function to get all recordings and metadata. You can also get the file durations using <code>getDuration=T</code>, however this can be time consuming. If you choose to get file durations then you can filter out recordings that are shorter than a required length (e.g. 180s or 3 min).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.wavs.html">get.wavs</a></span><span class="op">(</span>start.date <span class="op">=</span> <span class="st">"2017-06-01"</span>,end.date <span class="op">=</span> <span class="st">"2017-06-30"</span>, getDuration<span class="op">=</span><span class="cn">F</span>, minduration <span class="op">=</span> <span class="fl">180</span><span class="op">)</span>
+<span class="co"># Save file so you don't have to read files again. Especially if you got file durations.</span>
+<span class="co">#write.csv(data,"data.csv")</span>
+
+<span class="co">#head(data)</span></code></pre></div>
+</div>
+<div id="read-in-location-data-and-merge" class="section level3">
+<h3 class="hasAnchor">
+<a href="#read-in-location-data-and-merge" class="anchor"></a>Read in Location Data and Merge</h3>
+<p>Location data is important if you want to calculate sun time such as sunset and sunrise for selecting recordings. The <code><a href="../reference/mergelocations.html">mergelocations()</a></code> function will merge this data for you and alert you of any problems.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">locationdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"LV.xlsx"</span><span class="op">)</span>
+
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mergelocations.html">mergelocations</a></span><span class="op">(</span><span class="va">data</span>,<span class="va">locationdata</span>,locationname <span class="op">=</span> <span class="st">"Location"</span>,Latitude <span class="op">=</span> <span class="st">"Latitude"</span>, Longitude <span class="op">=</span> <span class="st">"Longitude"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="calculate-sunrisesunset" class="section level3">
+<h3 class="hasAnchor">
+<a href="#calculate-sunrisesunset" class="anchor"></a>Calculate Sunrise/Sunset</h3>
+<p>Sunrise and Sunset are both used to categorize recordings of interest for interpretation. In order to calculate these our data needs to have coordinates which we did above. For increased speed we will run this function in parallel.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getSunCalcs.html">getSunCalcs</a></span><span class="op">(</span><span class="va">data</span>, calc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sunrise"</span>,<span class="st">"sunset"</span><span class="op">)</span>,doParallel<span class="op">=</span><span class="cn">T</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="categorize-recordings" class="section level3">
+<h3 class="hasAnchor">
+<a href="#categorize-recordings" class="anchor"></a>Categorize Recordings</h3>
+<p>Next is to put recordings into time categories for selection. The idea is that for each location there will be one randomly selected recording for each category.</p>
 </div>
   </div>
 

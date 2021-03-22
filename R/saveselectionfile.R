@@ -8,12 +8,9 @@
 #' @return A .csv
 #' @keywords csv, recordings
 #' @export
-#' @examples
-#' saveselection.file(roundOne,out.path=file.path(getwd(),"SelectionData")
 
 
-
-saveselection.file <- function(data,out.path=file.path(getwd(),"SelectionData")){
+saveselection <- function(data,out.path=file.path(getwd(),"SelectionData")){
   if(!file.exists(out.path)) dir.create(out.path)
   path <- paste0(out.path,"/","recordingselection_",deparse(substitute(data)),".csv")
   if(!"Selected" %in% colnames(data)) data$Selected <- "No"

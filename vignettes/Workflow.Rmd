@@ -14,9 +14,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-The following vignette has been developed to outline the recording selection process. This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This workflow can be modified for your own purposes. 
+The following vignette has been developed to outline the recording selection process. This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This workflow can be modified for your own purposes.
+
+### Clear Workspace
+
+```{r}
+rm(list=ls())
+```
 
 ### Load Required Packages
+
 ```{r setup, warning=FALSE, message=FALSE, results = FALSE}
 # Install TrillR if needed
 #devtools::install_github("deanrobertevans/TrillR")
@@ -25,15 +32,59 @@ library(readxl)
 library(suncalc)
 library(tidyverse)
 library(hms)
+library(knitr)
 ```
 
 ### Set Working Directory
+
 Your working directory will be the location of all of the recordings you want to select from. It is important that recordings are organized in folders within this working directory. Each folder named after the location of the recordings it contains.
 
-
-```{r}
+```{r eval=FALSE}
 setwd("G:\\Deployed_ARU_Recordings")
 
 ```
 
+### Set the Location of sox.exe
 
+The TrillR package uses SoX to deal with .wav file manipulation and generating spectrograms. To use many of the functions in this package your first need to direct the package to the location of the sox.exe. The latest release can be downloaded here <https://sourceforge.net/projects/sox/files/sox/>.
+
+```{r eval = FALSE}
+setsox.exe("C:/Users/deane/Desktop/sox-14.4.2/sox.exe")
+```
+
+### Get .wav Data
+
+Use the the `get.wavs()` function to get all recordings and metadata. You can also get the file durations using `getDuration=T`, however this can be time consuming. If you choose to get file durations then you can filter out recordings that are shorter than a required length (e.g. 180s or 3 min).
+
+```{r eval = FALSE}
+data <- get.wavs(start.date = "2017-06-01",end.date = "2017-06-30", getDuration=F, minduration = 180)
+# Save file so you don't have to read files again. Especially if you got file durations.
+#write.csv(data,"data.csv")
+
+#head(data)
+
+```
+
+
+### Read in Location Data and Merge
+
+Location data is important if you want to calculate sun time such as sunset and sunrise for selecting recordings. The `mergelocations()` function will merge this data for you and alert you of any problems.
+
+```{r eval = FALSE}
+
+locationdata <- read_excel("LV.xlsx")
+
+data <- mergelocations(data,locationdata,locationname = "Location",Latitude = "Latitude", Longitude = "Longitude")
+```
+
+### Calculate Sunrise/Sunset
+
+Sunrise and Sunset are both used to categorize recordings of interest for interpretation. In order to calculate these our data needs to have coordinates which we did above. For increased speed we will run this function in parallel.
+
+```{r eval = FALSE}
+data <- getSunCalcs(data, calc = c("sunrise","sunset"),doParallel=T)
+```
+
+### Categorize Recordings
+
+Next is to put recordings into time categories for selection. The idea is that for each location there will be one randomly selected recording for each category.
