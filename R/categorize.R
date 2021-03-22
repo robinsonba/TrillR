@@ -141,11 +141,11 @@ categorize <- function(data,category.name, start.date, end.date, start.time, end
   if(!"category" %in% colnames(data)){
     dplyr::mutate(data,category = ifelse(!!starttime > !!endtime,
                                          dplyr::case_when(
-                                           lubridate::yday(datetime) >= !!startdate &  lubridate::yday(datetime)<= !!enddate &
-                                             (hms::as_hms(datetime) >= !!starttime | hms::as_hms(datetime) <= !!endtime) ~ category.name ),
+                                           lubridate::yday(datetime) >= !!startdate &&  lubridate::yday(datetime)<= !!enddate &&
+                                             (hms::as_hms(datetime) >= !!starttime || hms::as_hms(datetime) <= !!endtime) ~ category.name ),
                                          dplyr::case_when(
-                                           lubridate::yday(datetime) >= !!startdate &  lubridate::yday(datetime)<= !!enddate &
-                                             (hms::as_hms(datetime) >= !!starttime & hms::as_hms(datetime) <= !!endtime) ~ category.name )))
+                                           lubridate::yday(datetime) >= !!startdate &&  lubridate::yday(datetime)<= !!enddate &&
+                                             (hms::as_hms(datetime) >= !!starttime && hms::as_hms(datetime) <= !!endtime) ~ category.name )))
   }
   else {
     existingcat <- data$category
@@ -166,7 +166,7 @@ categorize <- function(data,category.name, start.date, end.date, start.time, end
     dplyr::mutate(data,category = ifelse(is.na(category),ifelse(!!starttime > !!endtime,
                                                                 dplyr::case_when(
                                                                   lubridate::yday(datetime) >= !!startdate &  lubridate::yday(datetime)<= !!enddate &
-                                                                    hms::as_hms(datetime) >= !!starttime | hms::as_hms(datetime) <= !!endtime ~ category.name ),
+                                                                    (hms::as_hms(datetime) >= !!starttime | hms::as_hms(datetime) <= !!endtime) ~ category.name ),
                                                                 dplyr::case_when(
                                                                   lubridate::yday(datetime) >= !!startdate &  lubridate::yday(datetime)<= !!enddate &
                                                                     hms::as_hms(datetime) >= !!starttime & hms::as_hms(datetime) <= !!endtime ~ category.name )),category))
