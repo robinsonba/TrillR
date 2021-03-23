@@ -19,7 +19,7 @@ For additional improved functionality you can also use the accompanied TrillR Ap
 
 ### Resources 
 * <a href="https://deanrobertevans.github.io/TrillR/" target="_blank">Documentation</a>
-* <a href="https://deanrobertevans.github.io/TrillR/articles/Workflow.html" target="_blank">Example Workflow Version 1</a>
+* <a href="https://deanrobertevans.github.io/TrillR/articles/Workflow.html" target="_blank">Example Workflow</a>
 
 ## Installation
 The development version of the TrillR package can be downloaded in R.
