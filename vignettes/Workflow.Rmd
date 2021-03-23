@@ -142,9 +142,9 @@ The `sox.spectrograms()` function will output a recording selection file that ne
 
 To do recording selection using the TrillR app follow these steps:
 
-1.  Drag your recordingselection.csv file into the TrillR App or Browse for it using the browse button. The app will check your file for all required columns needed for it to run properly. ![Upload](images/UploadFile.png)
+1.  Drag your recordingselection.csv file into the TrillR App or Browse for it using the browse button. The app will check your file for all required columns needed for it to run properly. 
 
-2.  If you everything was uploaded correctly you will now be within the main part of the app which looks like the picture below. For a complete guide on how to use this app please visit the GitHub page here:<https://github.com/deanrobertevans/TrillRApp>\>.![Landing Page](images/LandingPage.png)
+2.  If you everything was uploaded correctly you will now be within the main part of the app which will allow you to view and select recordings. For a complete guide on how to use this app please visit the GitHub page here: <https://github.com/deanrobertevans/TrillRApp>. 
 
 3.  Use the app to select your recordings. Recordings are randomly organized so choose the first suitable recording.
 
