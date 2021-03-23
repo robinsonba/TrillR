@@ -24,4 +24,7 @@ Imports:
 	doParallel,
 	foreach,
 	doSNOW
-
+Suggests: 
+    rmarkdown,
+    knitr
+VignetteBuilder: knitr

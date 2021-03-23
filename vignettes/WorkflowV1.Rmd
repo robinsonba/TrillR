@@ -1,8 +1,8 @@
 ---
-title: "Selection Workflow V2"
+title: "Selection Workflow V1"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Workflow}
+  %\VignetteIndexEntry{WorkflowV1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,8 +13,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-The following vignette has been developed to outline the recording selection process. This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This workflow can be modified for your own purposes. V2 is the newly adapted version that makes use of the TrillR App but if you would not like to use the app and do it the old fashioned way see V1.
+The following vignette has been developed to outline the recording selection process. V1 is the first recording selection process if you want a faster way see V2.This workflow is specific to selecting acoustic recordings for the identification of landbirds in the Northwest Territories, Canada by the Canadian Wildlife Service. This can be modified for your own purposes. 
 
 ### Clear Workspace
 
@@ -126,43 +125,61 @@ dataselection <- data[!is.na(data$category),]
 
 ### Spectrogram Generation
 
-Now that we have all available recordings categorized we can create spectrograms to assess weather suitability using the TrillR app. This can be done multiple ways but if you have time to spare it is recommended to generate a spectrogram for all selectable recordings to prevent having to multiple rounds of recording selection. Using `slice_sample(prop = 1)` will randomly order recordings for selection in the TrillR app. The idea is to choose the first suitable recording for interpratation hence the random order even though all available recordings are being sampled.
+Now that we have all available recordings categorized we can create spectrograms to assess weather suitability. This can be done multiple ways but it is recommended to do recording selection in rounds. We can make use of the `slice_sample(n = 1)` to get a random selection of recordings to check weather suitability. 
+
 
 ```{r eval=FALSE}
 ### Random sample of all eligible recordings (essentially all recordings but reorders them)
-sample <- dataselection %>% group_by(location,category) %>% slice_sample(prop = 1)
+roundone <- dataselection %>% group_by(location,category) %>% slice_sample(n = 1)
 
-sox.spectrograms(sample, duration = list(start = 0, end = 180), doParallel = T) # 3 minute spectrogram
+sox.spectrograms(roundone, duration = list(start = 0, end = 180), doParallel = T) # 3 minute spectrogram
 
 ```
 
-The `sox.spectrograms()` function will output a recording selection file that needs to be input into the TrillR App.
+The `sox.spectrograms()` function will output a recording selection file where you will you can choose a selection by changing the "Selected" Column to yes.
 
 ### Recording Selection
 
-To do recording selection using the TrillR app follow these steps:
+To do recording selection follow these steps:
 
-1.  Drag your recordingselection.csv file into the TrillR App or Browse for it using the browse button. The app will check your file for all required columns needed for it to run properly. 
+1.  Open your recordingselection.csv file and if needed sort by spectrogram file name
 
-2.  If you everything was uploaded correctly you will now be within the main part of the app which will allow you to view and select recordings. For a complete guide on how to use this app please visit the GitHub page here: <https://github.com/deanrobertevans/TrillRApp>. 
+2. Find the first recording in the recordingselection.csv and find the corresponding spectrogram and assess it for weather suitablity. If the recording is good change "Selected" from "No" to "Yes"
 
-3.  Use the app to select your recordings. Recordings are randomly organized so choose the first suitable recording.
-
-4.  Once your selection is done save your selection data using the download button and read it back into R. Check that you have the correct number of recordings. If you are missing selections you may need to repeat the selection process after you have removed already selected recordings. 
-
+3.  Continue for all recordings and once complete read in your selection data:
 ```{r eval=FALSE}
-selectiondata <- read.csv("selectedrecordings.csv", stringsAsFactors = F)
-selectiondata <- selectiondata[selectiondata$Selected =="Yes",] ### Just get selected
+roundoneresults <- read.csv("selectedrecordings.csv", stringsAsFactors = F)
+finalselection <- selectiondata[selectiondata$Selected =="Yes",] ### Just get selected add to a final selection dataframe
 
 ```
+
+4.  Remove all of the recordings for round one from your available dataselection data.frame because they are not suitable or have already been selected and you don't want to select them again.
+```{r eval=FALSE}
+dataselection <- remove.files(dataselection, roundoneresults)
+
+```
+
+5.  Remove all the selected recording category/locations from the dataselection data.frame because you already have a recording for that location and category.
+
+```{r eval=FALSE}
+dataselection <- remove.selection(dataselection, finalselection)
+
+```
+
+6. Now take another sample and create spectrograms for that sample repeating this process until all recordings have been selected. 
+
+```{r eval=FALSE}
+roundtwo <- dataselection %>% group_by(location,category) %>% slice_sample(n = 1)
+
+sox.spectrograms(roundtwo, duration = list(start = 0, end = 180), doParallel = T) # 3 minute spectrogram
+```
+
 
 ### Clip Selection to Length
-After you have determined your recording selection the final step might be to clip those files to length as they can often be much longer than what is needed for transcription. 
+After you have determined your final recording selection the final step might be to clip those files to length as they can often be much longer than what is needed for transcription. 
 
 
 ```{r eval=FALSE}
-sox.clips(selectiondata,out.path = file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180))
+sox.clips(finalselection,out.path = file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180))
 
 ```
-
-
