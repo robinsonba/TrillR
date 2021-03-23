@@ -24,7 +24,7 @@ Clipped .wav files.
 This function uses SoX to clip multiple wav files to a desired length.
 }
 \examples{
-sox.clips(data,out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
+sox.clips(data,out.path = file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180))
 }
 \keyword{clip,}
 \keyword{recordings}

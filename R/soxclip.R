@@ -11,7 +11,7 @@
 #' @keywords wav, categorize, get, recordings
 #' @export
 #' @examples
-#' sox.clip("C:/LV-01-01-01/LV-01-01-01_20170609_033500.wav",out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
+#' sox.clip("C:/LV-01-01-01/LV-01-01-01_20170609_033500.wav",out.path = file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180))
 
 sox.clip <- function(file.path, out.path=file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180)){
   if (!exists("SoXexe", envir = .TrillRenv)) stop("You are getting ahead of yourself! You need to specify the location of Sox.exe first")
@@ -30,7 +30,7 @@ sox.clip <- function(file.path, out.path=file.path(getwd(),"Clipped_Selection"),
 #' @keywords wav, clip, recordings
 #' @export
 #' @examples
-#' sox.clips(data,out.path = file.path(getwd(),"Spectrograms"), duration = list(start = 0, end = 180))
+#' sox.clips(data,out.path = file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180))
 
 
 sox.clips <- function(data, out.path=file.path(getwd(),"Clipped_Selection"), duration = list(start = 0, end = 180)){
