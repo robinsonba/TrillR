@@ -47,6 +47,10 @@ sox.spectrogram <- function(file.path, out.path = file.path(getwd(),"Spectrogram
 sox.spectrograms <- function(data, out.path = file.path(getwd(),"Spectrograms"), size = list(x = 1200, y = 500), duration = list(start = 0, end = 180), doParallel=FALSE){
   if(!"file.path" %in% colnames(data) ) stop("file.path is missing from your supplied data.")
   if (!exists("SoXexe", envir = .TrillRenv)) stop("You are getting ahead of yourself! You need to specify the location of Sox.exe first")
+  if(!file.exists(out.path)){
+    prompt <- utils::askYesNo(paste0("The out.path directory does not exist would you like R to create it for you at this path? ",out.path ), default = TRUE, prompts = getOption("askYesNo", gettext(c("Yes", "No"))))
+    if(is.na(prompt)){stop("You need to specify a proper out.path directory.")} else {
+      if(prompt){dir.create(out.path)} else {stop("You need to specify a proper out.path directory.")}}}
   data <- cbind(RecordID=1:nrow(data), data)
   data$Spectrogram <- paste0(out.path,"/",data$basename,".png")
   data$SpectrogramDuration <- duration$end - duration$start
