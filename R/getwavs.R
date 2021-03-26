@@ -58,6 +58,6 @@ get.wavs <- function(directory=getwd(),start.date=NULL,end.date=NULL,timezone="A
   }
 
 
-
+  data <- data[!grepl( "Clipped_Selection", dirname(data$file.path), fixed = TRUE),]
   return((data))
 }
