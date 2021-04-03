@@ -25,12 +25,12 @@ sox.spectrogram <- function(file.path, out.path = file.path(getwd(),"Spectrogram
   fn <- unlist(strsplit(basename(file.path), split = "[.]wav"))
   if(!exists("SoXexe", envir = .TrillRenv)){SoXexe<-soxpath}else{SoXexe <- .TrillRenv$SoXexe}
   if(!file.exists(file.path(out.path,paste0(fn,".png")))){
- warn <- system(paste0("\"",SoXexe,"\" \"",file.path,"\" -n ","trim ",duration$start," ",duration$end, " spectrogram", " -x ", size$x, " -Y ", size$y, " -r", " -o \"", file.path(out.path,fn),".png\""), intern = T)}
+ warn <- system(paste0("\"",SoXexe,"\" \"",file.path,"\" -n ","trim ",duration$start," ",duration$end, " spectrogram", " -x ", size$x, " -Y ", size$y, " -r", " -o \"", file.path(out.path,fn),".png\""), intern = T)
   if(length(warn) > 0 & any(grepl("WARN trim: End position is after expected end of audio", warn, fixed = TRUE))){
     warning(paste0("The audio file you selected is shorter than the duration specified: ", basename(file.path)))
     
   } 
-
+  }
   }
 
 
