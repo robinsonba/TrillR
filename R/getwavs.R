@@ -19,13 +19,9 @@ get.wavs <- function(directory=getwd(),start.date=NULL,end.date=NULL,timezone="A
   if (!exists("SoXexe", envir = .TrillRenv)) stop("You are getting ahead of yourself! You need to specify the location of Sox.exe first")
   file.path <- list.files(directory,pattern = "\\.wav$",recursive = T, full.names=T)
   file.name <- list.files(directory,pattern = "\\.wav$",recursive = T, full.names=F)
-  basename <-  gsub(pattern=".wav","",basename(file.path))
-  file.name <- gsub(pattern=".wav","",file.name)
-  loc.data <- regmatches(file.name, regexec('/(.*?)\\_', file.name))
-  location <-NULL
-  for (i in 1:length(file.name)) {
-    location[i] <- loc.data[[i]][2]}
-  date.time <- paste0(as.character(stringr::str_extract(file.name,"(?<=_)\\d{8}(?=_)"))," ",as.character(sub(".*(\\d+{6}).*$", "\\1", file.name)))
+  basename <- gsub(pattern = ".wav", "", file.name)
+  location <- sub("\\_.*", "", basename) 
+  date.time <- paste0(as.character(stringr::str_extract(basename,"(?<=_)\\d{8}(?=_)"))," ",as.character(sub(".*(\\d+{6}).*$", "\\1", basename)))
   date.time <- lubridate::ymd_hms(date.time,tz=timezone)
   JDay <- lubridate::yday(date.time)
   data <- data.frame(file.path=file.path,basename=basename,location=location,datetime=date.time,JDay=JDay,stringsAsFactors = F)
